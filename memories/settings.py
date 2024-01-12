@@ -78,6 +78,8 @@ WSGI_APPLICATION = 'memories.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+
 if DEVELOPMENT_MODE is True:
     DATABASES = {
         "default": {
