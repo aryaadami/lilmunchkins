@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+M | Home</title>
+    <link rel="stylesheet" href="{% static 'css/home_page_styles.css' %}">
+</head>
+
+<body>
+
+    <canvas id="piggyCanvas"></canvas>
+
+    <div class="image-grid">
+        {% for memory in page_obj %}
+            <div class="image-item">
+                <img src="{{ memory.image.url }}" alt="image unavailable :(">
+                <a href="{{ memory.get_absolute_url }}">
+                <div class="description">{{ memory.date }}</div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% include "utilities/pagination.html" with page=page_obj %}
+
+    <script src="{% static 'js/home_page.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script>
+        window.onload = () => {
+            var grid = document.querySelector('.image-grid');
+            new Masonry(grid, {
+                itemSelector: '.image-item',
+                percentPosition: true,
+                columnWidth: '.image-item',
+                gutter: 10
+            });
+        };
+    </script>
+
+</body>
+
+</html>

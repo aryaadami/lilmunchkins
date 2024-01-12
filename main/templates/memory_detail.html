@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ memory.title|truncatechars:20 }}</title>
+    <link rel="stylesheet" href="{% static 'css/memory_detail.css' %}">
+</head>
+<body>
+    <div class="image-container">
+        <h1 class="cool-title">{{ memory.title }}</h1>
+        <img src="{{ memory.image.url }}" alt="Image of {{ memory.title|truncatechars:30 }}" id="main-image">
+        <div class="image-info">
+            <p class="description">{{ memory.description }}</p>
+            <p class="date">Date: {{ memory.date }}</p>
+        </div>
+    </div>
+    <button id="back-button">Go Back</button>
+
+    <script src="{% static 'js/memory_detail.js' %}"></script>
+</body>
+</html>
